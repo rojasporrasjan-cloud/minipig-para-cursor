@@ -1,0 +1,255 @@
+/* =============================
+   Tailwind CSS v3
+   ============================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Variables CSS personalizadas ===== */
+:root {
+  --color-brand-background: #FFF9F5;
+  --color-brand-dark: #4F342B;
+  --color-brand-text-muted: #8D7B75;
+  --color-brand-pink: #F78CB6;
+  --color-brand-pink-light: #FFDDEE;
+  --color-brand-pink-dark: #E0729A;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-border: #FBE9E4;
+  --color-brand-accent: #8B5E34;
+  --color-brand-accent-hover: #6F4421;
+  --shadow-button-primary: 0 4px 20px -2px rgb(247 140 182 / 40%);
+  --shadow-button-primary-hover: 0 6px 25px -2px rgb(224 114 154 / 50%);
+}
+
+/* ===== Base ===== */
+@layer base {
+  /* Seguridad si algún día desactivas preflight */
+  h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+  p, h1, h2, h3, h4, h5, h6, ul, ol { margin: 0; }
+
+  body {
+    background: var(--color-brand-background);
+    color: var(--color-brand-dark);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: var(--color-brand-pink); }
+  a:hover { color: var(--color-brand-pink-dark); }
+
+  ::selection {
+    background: #E9D8C9;
+    color: var(--color-brand-dark);
+  }
+}
+
+/* ===== Componentes ===== */
+@layer components {
+     /* Botón base */
+     .btn {
+       @apply inline-flex items-center justify-center font-semibold rounded-md transition
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+     }
+   
+     /* Primario rosa (píldora) */
+     .btn-pig {
+       @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink focus-visible:ring-offset-2;
+       background-color: var(--color-brand-pink);
+       color: white;
+       box-shadow: var(--shadow-button-primary);
+     }
+     .btn-pig:hover {
+       background-color: var(--color-brand-pink-dark);
+       box-shadow: var(--shadow-button-primary-hover);
+     }
+     .btn-pig:active { transform: scale(.98); }
+   
+     /* Secundario outline suave (para "Ingresar" si lo usas) */
+     .btn-outline-pig {
+       @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink focus-visible:ring-offset-2;
+       background: white;
+       color: var(--color-brand-dark);
+       border: 1px solid var(--color-brand-border);
+     }
+     .btn-outline-pig:hover {
+       background: var(--color-brand-pink-light);
+       color: var(--color-brand-pink-dark);
+     }
+   
+     /* Botón/área de WhatsApp (el ícono en sí trae el color oficial) */
+     .btn-wa {
+       @apply inline-flex items-center justify-center rounded-full h-10 w-10
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2;
+       background: transparent; /* el color lo pone el SVG */
+     }
+     .btn-wa:hover { background: rgba(0,0,0,.05); }
+   
+     /* Píldoras navegación (si las quisieras) */
+     .chip-nav {
+       @apply rounded-full px-3 py-1.5 text-sm font-medium transition-colors;
+     }
+   
+     /* Card */
+     .card {
+       @apply rounded-xl p-4 shadow-sm transition border bg-white/90;
+       border-color: var(--color-brand-border);
+     }
+     .card:hover {
+       transform: translateY(-4px);
+       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+     }
+   
+     /* Input */
+     .input-style {
+       @apply block w-full rounded-md border-gray-300 py-2 px-3 text-sm text-gray-900 shadow-sm
+              focus:outline-none focus:ring-1 focus:ring-brand-pink focus:border-brand-pink
+              disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-70;
+     }
+   
+     /* Fondo glass del navbar al hacer scroll (rosado suave) */
+     .nav-glass {
+       @apply backdrop-blur-md border-b;
+       border-color: var(--color-brand-border);
+       /* Tinte rosado-crema con transparencia */
+       background: color-mix(in oklab, #FFF2F6 70%, transparent);
+       /* Sutil degradé Mini Pig */
+       background-image: linear-gradient(180deg, rgba(255, 221, 238, 0.45), rgba(255, 249, 245, 0.25));
+       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+     }
+   
+     /* Fondos de página */
+     .page-gradient-rose {
+       background-image: radial-gradient(ellipse at top, #FFE6EE, #FFF5F7, #FFFDFB);
+     }
+     .page-gradient-mint {
+       background-image: radial-gradient(ellipse at top, #E9FFF4, #F5FFFB, #FDFFFE);
+     }
+     .page-gradient-peach {
+       background: linear-gradient(to bottom right, #ffe5d9, #ffd6e0);
+     }
+}
+
+/* ===== Animaciones ===== */
+@layer utilities {
+  @keyframes slide-down-fade {
+    0% { opacity: 0; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-down-fade { animation: slide-down-fade 160ms ease-out forwards; }
+
+  /* Animaciones mejoradas */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(247, 140, 182, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(247, 140, 182, 0.6); }
+  }
+  .animate-glow { animation: glow 2s ease-in-out infinite; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  .animate-bounce-gentle { animation: bounce-gentle 2s ease-in-out infinite; }
+
+  /* Efectos de hover mejorados */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(247, 140, 182, 0.4);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Gradientes personalizados */
+  .gradient-brand {
+    background: linear-gradient(135deg, var(--color-brand-pink-light), var(--color-brand-pink), var(--color-brand-pink-dark));
+  }
+
+  .gradient-text-brand {
+    background: linear-gradient(135deg, var(--color-brand-pink), var(--color-brand-pink-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Efectos de cristal/glass */
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-effect-pink {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 221, 238, 0.6);
+    border: 1px solid rgba(247, 140, 182, 0.2);
+  }
+
+  /* Sombras mejoradas */
+  .shadow-brand {
+    box-shadow: 0 10px 25px -5px rgba(247, 140, 182, 0.3);
+  }
+
+  .shadow-brand-lg {
+    box-shadow: 0 20px 40px -10px rgba(247, 140, 182, 0.4);
+  }
+
+  /* Bordes decorativos */
+  .border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--color-brand-pink-light), var(--color-brand-pink)) border-box;
+  }
+
+  /* Efectos de partículas/elementos flotantes */
+  .floating-elements::before,
+  .floating-elements::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  .floating-elements::before {
+    width: 60px;
+    height: 60px;
+    background: var(--color-brand-pink);
+    top: 10%;
+    left: 10%;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .floating-elements::after {
+    width: 40px;
+    height: 40px;
+    background: var(--color-brand-pink-dark);
+    bottom: 20%;
+    right: 15%;
+    animation: float 3s ease-in-out infinite reverse;
+  }
+}
+   

@@ -1,0 +1,14 @@
+# public/robots.txt
+
+# Permite que todos los robots accedan a la mayoría del sitio
+User-agent: *
+Allow: /
+
+# Deshabilita el acceso a las rutas de administración
+Disallow: /admin/
+Disallow: /panel/ # Ruta antigua por si acaso
+Disallow: /mi-cuenta/
+Disallow: /configuracion/
+
+# Ubicación del sitemap
+Sitemap: https://tu-dominio.com/sitemap.xml 
